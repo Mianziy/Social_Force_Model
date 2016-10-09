@@ -4,7 +4,7 @@
 
 ## 1. 什么是社会力模型 ##
 
-社会力模型（Social-Force Model）是 D. Helbing 与 P. Molnár 于1995年提出的，并在之后不断完善的理论模型，其在计算机疏散仿真领域有着广泛应用。
+I社会力模型（Social-Force Model）是 D. Helbing 与 P. Molnár 于1995年提出的，并在之后不断完善的理论模型，其在计算机疏散仿真领域有着广泛应用。
 
 社会力模型的核心是基于运动公式的一组描述个体自身特征同周围环境联系的方程：
 
@@ -14,7 +14,7 @@ $$ F_i = m_i*dv_i/dt = f_i + \sum_{i(\ne j)}f_j + \sum_W f_{iW},\tag1 $$
 
 $$ f_i = m_i[v_i^0 (t) e_i^0 (t)-v_i (t)]/τ_i,\tag2 $$
 
-对于特定事物及出口的吸引力 $f_0$，其由形如式.3的公式确定：
+J对于特定事物及出口的吸引力 $f_0$，其由形如式.3的公式确定：
 
 $$ f_0= A_i*exp[(r_i-d_i)⁄B_i],\tag3 $$
 
@@ -24,9 +24,10 @@ $$ F_{ij}= {A_i*exp[(r_{ij}- d_{ij})/B_i ]+ kg(r_{ij}- d_{ij} )} n_{ij}  - \\κg
 
 而来自障碍物的排斥力 $F_{iW}$ 可表示为：
 
-$$ F_iW= {A_i*exp[(r_i- d_{iW})/B_i ]+ kg(r_i- d_{iW} )} n_iW  -\\κg(r_i- d_{iW} )(v_i*t_{iW} )t_{iW},\tag5 $$
+I$$ F_iW= {A_i*exp[(r_i- d_{iW})/B_i ]+ kg(r_i- d_{iW} )} n_{iW}  - \\κg(r_i- d_{iW} )(v_i*t_{iW} )t_{iW},\tag5 $$
 
 注: 上述公式及符号的具体含义请参考: D. Helbing et al. _Simulating dynamical features of escape panic_ [J]. Nature, 2000, 407(6803): 487–490.
+
 ## 2. 基于 Netlogo 的社会力模型的实现 ##
 
 在 Netlogo 中，可供操作的主体分为`海龟(turtles)`、`瓦片(patches)`、`链(links)`，以及`观察者(observe)`。我们通过将社会力模型，即式.1分为三部分，并借由`海龟(turtles)`、`瓦片(patches)`、`链(links)`分别表示，以在 Netlogo 环境下实现社会力模型。
@@ -45,7 +46,7 @@ $$ F_iW= {A_i*exp[(r_i- d_{iW})/B_i ]+ kg(r_i- d_{iW} )} n_iW  -\\κg(r_i- d_{iW
 
 在程序的开头部分，我们将定义不同的种类的海龟和链，并设置全局变量和有关内置变量。
 
-通过`breed [<breeds> <breed>]`函数将主体定义为不同种类，这样可以使其遵循不同的命令。
+通过`breed [<breeds> <breed>]`以及`directed-link-breed [<link-breeds> <link-breed>]`函数将主体定义为不同种类，这样可以使其遵循不同的命令。
 
 ```
 breed[hitobito hito]	
