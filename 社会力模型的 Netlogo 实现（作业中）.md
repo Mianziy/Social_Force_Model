@@ -1,6 +1,6 @@
 # 社会力模型的 Netlogo 实现 #
 
-本程序将在 Netlogo 环境下，实现社会力模型的核心部分。您可以在此基础上增加、修改相应参变量或者逻辑，已达到您研究的目的。
+本程序将在 Netlogo 环境下，实现社会力模型的核心部分。您可以在此基础上增加、修改相应参变量或者逻辑，以达到您研究的目的。
 
 ## 1. 什么是社会力模型 ##
 
@@ -27,7 +27,6 @@ $$ F_{ij}= {A_i*exp[(r_{ij}- d_{ij})/B_i ]+ kg(r_{ij}- d_{ij} )} n_{ij}  - \\κg
 $$ F_iW= {A_i*exp[(r_i- d_{iW})/B_i ]+ kg(r_i- d_{iW} )} n_iW  -\\κg(r_i- d_{iW} )(v_i*t_{iW} )t_{iW},\tag5 $$
 
 注: 上述公式及符号的具体含义请参考: D. Helbing et al. _Simulating dynamical features of escape panic_ [J]. Nature, 2000, 407(6803): 487–490.
-
 ## 2. 基于 Netlogo 的社会力模型的实现 ##
 
 在 Netlogo 中，可供操作的主体分为`海龟(turtles)`、`瓦片(patches)`、`链(links)`，以及`观察者(observe)`。我们通过将社会力模型，即式.1分为三部分，并借由`海龟(turtles)`、`瓦片(patches)`、`链(links)`分别表示，以在 Netlogo 环境下实现社会力模型。
@@ -44,22 +43,31 @@ $$ F_iW= {A_i*exp[(r_i- d_{iW})/B_i ]+ kg(r_i- d_{iW} )} n_iW  -\\κg(r_i- d_{iW
 
 ##### 变量的定义和设置 #####
 
-在程序的开头部分，我们将定义不同的种类的海龟和链，并设置有关变量和全局变量。
+在程序的开头部分，我们将定义不同的种类的海龟和链，并设置全局变量和有关内置变量。
+
+通过`breed [<breeds> <breed>]`函数将主体定义为不同种类，这样可以使其遵循不同的命令。
 
 ```
 breed[hitobito hito]	
 ;; 设置一种名为“人”的海龟
 directed-link-breed[in-forces in-force]
 ;; 设置名为“个体间相互作用力”的有向链
+```
 
-globals[		;; 定义全局参数
+通过`globals [var1 ...]`函数定义全局变量，其能由任何主体访问，并允许在程序任何地方使用。
+
+```
+globals[		;; 定义全局变量
   Ai Bi Bii 	;; 定义式.3中的参数 A_i 与 B_i
   k kappa		;; 定义式.4及式.5中的参数 k 与 κ
   pre			;; 定义一个中间参数
-  num-hibobito 	;; 定义一个初始海龟数量，即人数的参数
-  num			
+  num-hibobito 	;; 定义一个初始海龟数量，即人数的参数	
 ]
+```
 
+通过`<breeds>-own`、`<link-breeds>-own`,以及`patches-own`函数，为相应主体赋予不同的属性与参数。同全局变量不同，内置变量对于不同个体可以完全不一样。
+
+```
 hitobito-own[	;; 定义“人”的内置参数
   v0			;; 定义初始速度
   v				;; 定义实际速度
