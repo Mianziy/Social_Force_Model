@@ -129,7 +129,6 @@ to evacuate	;; 定义关于疏散的语句
   ask-concurrent hitobito[
 	;; 使用并发请求，使 agent 在每一 turn 执行下列命令
 	
-    let h-ac ((count hitobito)/ninnzuu) * h
     create-in-forces-to other hitobito in-radius 0.7
 	;; 命令 agent 生成一条指向质心距离 0.7 单位内其他 agent 有向链
 	;; 对于 f_ij 而言，其是一个随着距离增加而迅速下降的函数
