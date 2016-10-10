@@ -145,8 +145,8 @@ to evacuate	;; 定义关于疏散的语句
     ;; 判断所处 patch 的吸引力函数是否大于 p
     ;; （在本程序中对于吸引力函数，
     ;; 其数值越小表示对于 agent 的吸引力越大）
-      set fidx ((mass * (sin towards p * v0 - sin heading * 	  v))/tau)
-      set fidy ((mass * (cos towards p * v0 - cos heading * 	  v))/tau)
+      set fidx ((mass * (sin towards p * v0 - sin heading * v))/tau)
+      set fidy ((mass * (cos towards p * v0 - cos heading * v))/tau)
     ]
    	;; 分别设置内心驱动力的水平竖直分量
 
