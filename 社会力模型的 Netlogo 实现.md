@@ -89,7 +89,6 @@ hitobito-own[	;; 定义“人”的内置参数
   fiWdx fiWdy	;; 定义水平及竖直方向的障碍物排斥力
   p_i			;; 定义式.6中的从众系数
 ]
-
 in-forces-own[	;; 定义“个体间相互作用力”的内置参数
   g				;; 定义重力加速度 g
   dij			;; 定义个体间距离 d_ij
@@ -100,8 +99,7 @@ in-forces-own[	;; 定义“个体间相互作用力”的内置参数
   ang			;; 定义 f_ij 即有向链的角度
 ]
 
-patches-own[	;; 定义 patches 的内部参数
-  wall?			;; 定义属性为“墙”的 patch，作为障碍物
+patches-own[	;; 定义 patches 的内部参数  wall?			;; 定义属性为“墙”的 patch，作为障碍物
   floor?		;; 定义属性为“地板”的 patch
   exit-space?	;; 定义属性为“出口”的 patch
   safe-space?	;; 定义属性为“安全区”的 patch
@@ -134,8 +132,8 @@ to evacuate	;; 定义关于疏散的语句
 	;; 对于 f_ij 而言，其是一个随着距离增加而迅速下降的函数
 	;; 选取合适的距离作为生成 f_ij 可以相应减少部分计算量
 	
-    if ([float?] of patch-here = true)
-    ;; 判断所处 patch 属性是否为 float
+    if ([floor?] of patch-here = true)
+    ;; 判断所处 patch 属性是否为 floor
     [let p min-one-of neighbors [f-patch]
     ;; 将相邻 Moore 领域 patch 的最小值赋予临时变量 p
     ;; 这将用以指示 agent 的运动方向
