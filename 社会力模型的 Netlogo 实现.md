@@ -99,7 +99,8 @@ in-forces-own[	;; 定义“个体间相互作用力”的内置参数
   ang			;; 定义 f_ij 即有向链的角度
 ]
 
-patches-own[	;; 定义 patches 的内部参数  wall?			;; 定义属性为“墙”的 patch，作为障碍物
+patches-own[	;; 定义 patches 的内部参数  
+  wall?			;; 定义属性为“墙”的 patch，作为障碍物
   floor?		;; 定义属性为“地板”的 patch
   exit-space?	;; 定义属性为“出口”的 patch
   safe-space?	;; 定义属性为“安全区”的 patch
